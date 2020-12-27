@@ -12,14 +12,42 @@ typedef struct matrix{
     float** values;
 }matrix;
 
+vector* new_vector(int size);
+matrix* new_matrix(int width, int height);
+/*
+adds v1 to v2 and stores the result in v1
+*/
 void v_add(vector* v1, vector* v2);
+/*
+subtracts v2 from v1 and stores the result in v1
+*/
 void v_sub(vector* v1, vector* v2);
+/*
+multiplies v1 and v2 and stores the result in v1
+*/
 void v_mul(vector* v1, vector* v2);
+void v_mul_v(vector* v, float value);
+/*
+devides v1 by v2 and stores the result in v1
+*/
 void v_div(vector* v1, vector* v2);
+/*
+frees the allocated memory for the vector
+*/
+void v_free(vector* v);
+void m_free(matrix* m);
+/*
+applies the function to every element in the vector
+*/
 void v_foreach_f(vector* v, float(*func)(float));
+/*
+applies the action to every element in the vector
+*/
 void v_foreach_a(vector* v, float(*action)());
-void m_foreach_f(matrix* v, float(*func)(float));
-void m_foreach_a(matrix* v, float(*action)());
+void m_foreach_f(matrix* m, float(*func)(float));
+void m_foreach_a(matrix* m, float(*action)());
+/*
+returns the product of matrix m and vector v
+*/
 vector* v_m_mul(matrix* m, vector* v);
-
 #endif
