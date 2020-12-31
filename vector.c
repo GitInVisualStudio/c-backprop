@@ -1,5 +1,6 @@
 #include "vector.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 vector* new_vector(int size){
     vector* new = (vector*)malloc(sizeof(vector));
@@ -76,14 +77,23 @@ void m_foreach_f(matrix* m, float(*func)(float)){
             m->values[i][j] = func(m->values[i][j]);
 }
 
-void v_free(vector* v){
-    free(v->values);
+void v_free(void* v){
+    vector* ve = (vector*)v;
+    free(ve->values);
     free(v);
 }
 
-void m_free(matrix* m){
-    for(int x = 0; x < m->width; x++)
-        free(m->values[x]);
-    free(m->values);
+void m_free(void* m){
+    matrix* ma = (matrix*)m;
+    for(int x = 0; x < ma->width; x++)
+        free(ma->values[x]);
+    free(ma->values);
     free(m);
+}
+
+void v_print(vector* v){
+    printf("Size: %i Values: ", v->size);
+    for(int i = 0; i < v->size; i++)
+        printf("%f, ", v->values[i]);
+    printf("\n");
 }

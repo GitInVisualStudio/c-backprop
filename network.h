@@ -44,6 +44,6 @@ vector* backward_layer(layer* layer, vector* error);
 /*
 returns a random float between -1 and 1
 */
-float f_random();
+float random_f();
 void network_free(network* net);
 #endif

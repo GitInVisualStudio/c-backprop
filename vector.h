@@ -34,8 +34,8 @@ void v_div(vector* v1, vector* v2);
 /*
 frees the allocated memory for the vector
 */
-void v_free(vector* v);
-void m_free(matrix* m);
+void v_free(void* v);
+void m_free(void* m);
 /*
 applies the function to every element in the vector
 */
@@ -46,6 +46,8 @@ applies the action to every element in the vector
 void v_foreach_a(vector* v, float(*action)());
 void m_foreach_f(matrix* m, float(*func)(float));
 void m_foreach_a(matrix* m, float(*action)());
+
+void v_print(vector* v);
 /*
 returns the product of matrix m and vector v
 */
