@@ -9,8 +9,9 @@ typedef struct layer{
     //used when we backpropagate, so that we dont need to calcualte the output of the layer twice
     vector* output;
     vector* input;
-    float (*activation)(float);
-    float (*deriv_a)(float);
+    vector* deriv;
+    void (*activation)(float*);
+    void (*deriv_a)(float*);
 }layer;
 
 typedef struct network{
@@ -21,8 +22,8 @@ typedef struct network{
 /*
 size is an array of the input size for each layer
 */
-network* create_network(int* size, int count, float (*activation)(float), float(*deriv_a)(float));
-layer* create_layer(int input_size, int output_size, float (*activation)(float), float(*deriv_a)(float));
+network* create_network(int* size, int count, void (*activation)(float*), void (*deriv_a)(float*));
+layer* create_layer(int input_size, int output_size, void (*activation)(float*), void (*deriv_a)(float*));
 /*
 returns a new allocated vector with the output from the network
 */
