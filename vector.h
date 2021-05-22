@@ -28,7 +28,7 @@ void v_add(vector* v1, vector* v2);
 /*
 subtracts v2 from v1 and stores the result in v1
 */
-void v_sub(vector* v1, vector* v2);
+void v_sub(vector* v1, vector* v2, float value);
 /*
 multiplies v1 and v2 and stores the result in v1
 */

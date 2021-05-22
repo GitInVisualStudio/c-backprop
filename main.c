@@ -25,7 +25,7 @@ int main(int argc, char** argv){
     printf("Start reading training data\n");
     int in;
     while(fscanf(fp, "%i", &in) != EOF){
-        if(length >= 10000)
+        if(length >= 10)
             break;
 
         length++;
@@ -47,7 +47,7 @@ int main(int argc, char** argv){
     printf("finished reading training data: %i samples\n", length);
     int size[] = {784, 16, 16, 10};
     network* net = create_network(size, 4, acitivation, deriv_activation);
-    for(int k = 0; k < 10; k++){
+    for(int k = 0; k < 50; k++){
         double delta;
         float loss = 0;
         struct timeval start, end;

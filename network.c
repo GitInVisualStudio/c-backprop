@@ -61,7 +61,7 @@ vector* backward_layer(layer* layer, vector* error){
     TODO:   -implement a smooth way to store the different deriv of the biases and weights
             -add a way to choose an optimiser  
     */
-    v_sub(layer->biases, error);
+    v_sub(layer->biases, error, 0.1f);
     register int width = layer->weights->width, height = layer->weights->height;
     for(register int x = 0; x < width; x++){
         register float* arr = layer->weights->values[x];
@@ -69,7 +69,7 @@ vector* backward_layer(layer* layer, vector* error){
             //first calculate the deriv befor changing the weights
             register float var = error->values[y];
             layer->deriv->values[x] = arr[y] * var;
-            arr[y] -= var * layer->input->values[x];
+            arr[y] -= var * layer->input->values[x] * 0.1f;
         }
     }
 
@@ -82,7 +82,7 @@ float backward(network* net, vector* input, vector* output){
     vector* error = new_vector(output->size, NONE);
 
     v_add(error, current_output);
-    v_sub(error, output);
+    v_sub(error, output, 1);
 
     float loss = 0;
     int max = 0;
@@ -90,8 +90,6 @@ float backward(network* net, vector* input, vector* output){
         if(current_output->values[i] > current_output->values[max])
             max = i;
     loss = output->values[max] == 1;
-    float learning_rate = 0.1f;
-    v_mul_v(error, learning_rate);
 
     output = error;
 

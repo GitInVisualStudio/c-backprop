@@ -45,10 +45,10 @@ void v_add(vector* v1, vector* v2){
         v1->values[i] += v2->values[i];
 }
 
-void v_sub(vector* v1, vector* v2){
+void v_sub(vector* v1, vector* v2, float value){
     register int size = v1->size;
     for(register int i = 0; i < size; i++)
-        v1->values[i] -= v2->values[i];
+        v1->values[i] -= v2->values[i] * value;
 }
 
 void v_mul(vector* v1, vector* v2){
